@@ -31,7 +31,6 @@ class RenderScene():
     
     def calculateObjects(self):
         #t1 = time.time()
-        allVerts = []
         allFaces = []
         #print(self.objectNames)
         for gameObject in self.objects:

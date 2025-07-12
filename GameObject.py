@@ -26,24 +26,19 @@ class GameObject():
     def Render(self, surface: pygame.Surface, light: 'GameObject') -> None:
         #print(len(self.vertices), max(self.faces, key=lambda face: max(face.vertexIndices)).vertexIndices)
         #t2 = time.time()
-        self.faces.sort(key=lambda face: max([vert.z for vert in face.vertices]), reverse=True)
-        
-        lightIntensity = []
-        for face in self.faces:
-            lightDir = (face.center - light.position).normalize()
-            lightIntensity.append((-min(0, lightDir.dot(face.normal))+1)/2)
+        self.faces.sort(key=lambda face: max([vert.z for vert in face.vertices] + [face.center.z]), reverse=True)
         #t3 = time.time()
-        #print(f'Light Calc: {round(t3-t2, 3)}')
+        #print(f'Z Sort: {round(t3-t2, 3)}')
+        
         center = (surface.width/2, surface.height/2)
         fov = 60
         pixPerWorldUnit = surface.height / (tan(radians(fov/2))*2)
-        offset = 0
         for i in range(len(self.faces)):
-            i -= offset
+            lightIntensity = (-min(0, (self.faces[i].center - light.position).normalize().dot(self.faces[i].normal))+1)/2
             #print([(self.vertices[vert].xy / self.vertices[vert].z) + (surface.width/2, surface.height/2) for vert in self.faces[i]])
             #print(*[int(self.faces[i].color[j] * lightIntensity[i]) for j in range(3)])
             #print(lightIntensity[i])
-            pygame.draw.polygon(surface, [*[int(self.faces[i].color[j] * lightIntensity[i]) for j in range(3)]], [(vert.xy * pixPerWorldUnit / vert.z) + center for vert in self.faces[i].vertices], width=0)
+            pygame.draw.polygon(surface, [*[int(self.faces[i].color[j] * lightIntensity) for j in range(3)]], [(vert.xy * pixPerWorldUnit / vert.z) + center for vert in self.faces[i].vertices], width=0)
         #print(f'Render {self.name}: {round(time.time()-t3, 3)}')
 
     def rotatePoint(self, angles: tuple[float, float, float], point: Vec3) -> None:
