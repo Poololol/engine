@@ -7,7 +7,7 @@ class Light(GameObject):
         position = Vec3(position)
         self.dir: Vec3 = Vec3(dir)
         self.color: pygame.Color = pygame.Color(color)
-        super().__init__([], [], 'Light', (position))
+        super().__init__([], 'Light', (position))
     
     def Render(self, surface: pygame.Surface, light: GameObject) -> None:
         pass

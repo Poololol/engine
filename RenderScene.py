@@ -36,18 +36,10 @@ class RenderScene():
         #print(self.objectNames)
         for gameObject in self.objects:
             for face in gameObject.faces:
-                vertInds = face.vertexIndices.copy()
-                for i in range(len(vertInds)):
-                    vertInds[i] += len(allVerts)
-                newFace = Face(vertInds, face.color)
-                newFace.center = face.center
-                if face.normal is not None:
-                    newFace.addNormal(face.normal)
-                allFaces.append(newFace)
+                allFaces.append(face)
             #print(len(gameObject.vertices), len(allVerts), sum([len(gobj.vertices) for gobj in self.objects]))
-            for vert in gameObject.vertices:
-                allVerts.append(vert)
-        self.allObjects = GameObject(allVerts, allFaces, 'all-Objects', Vec3(0,0,0))
+            
+        self.allObjects = GameObject(allFaces, 'all-Objects', Vec3(0,0,0))
         #print(f'calculateObjects: {round(time.time()-t1, 3)}')
 
     def delObject(self, objName: str) -> None:
