@@ -59,7 +59,7 @@ def parseObj(filename: str) -> OBJ:
     for faceInfo in facesInfo:
         color = pygame.Color(random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
         #color = (255, 255, 255)
-        face = Face([vertices[faceInfo[0][i]] for i in range(len(faceInfo[0]))], color)
+        face = Face([vertices[faceInfo[0][i]].copy() for i in range(len(faceInfo[0]))], color)
         if faceInfo[1][0] >= 0 and len(texCoords) > 0:
             face.addTexture(0, [pygame.math.Vector2(texCoords[i]) for i in faceInfo[1]])
         if faceInfo[2][0] >= 0 and len(normals) > 0:

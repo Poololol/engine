@@ -86,7 +86,7 @@ class GameObject():
         self.position += translation
         for face in self.faces:
             for vertex in face.vertices:
-                vertex += translation/4
+                vertex += translation
             face.center += translation
 
     def scale(self, scaleFactor: float) -> None:
