@@ -16,7 +16,6 @@ class GameObject():
             face.center += position
             self.faces.append(face)
         #print(self.faces, '\n\n\n')
-        self.origColors: list[pygame.Color | tuple[int, int, int]] = [(255, 0, 0), (0, 255, 0), (0, 0, 255), (255, 255, 0), (255, 0, 255), (0, 255, 255)]
         self.name: str = name
         self.up: Vec3 = Vec3(0, 1, 0)
         self.right: Vec3 = Vec3(1, 0, 0)
@@ -87,9 +86,8 @@ class GameObject():
         self.position += translation
         for face in self.faces:
             for vertex in face.vertices:
-                vertex += translation
-            if face.center:
-                face.center += translation
+                vertex += translation/4
+            face.center += translation
 
     def scale(self, scaleFactor: float) -> None:
         for face in self.faces:
