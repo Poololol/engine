@@ -34,7 +34,7 @@ rend.getScene('OBJ').getObject('beveledCube4').translate(Vec3(-2, 0, 5))
 rend.getScene('OBJ').getObject('sphere').translate(Vec3(0, 0, 5))
 
 rend.addScene('Sphere')
-#rend.setScene('Sphere')
+rend.setScene('Sphere')
 rend.getScene('Sphere').addObjectFromObj(r"C:\Users\braed\OneDrive\Documents\sphere.obj", 'sphere')
 rend.getScene('Sphere').getObject('sphere').translate(Vec3(0, 0, 3))
 r'''rend.getScene('Sphere').addObjectFromObj(r"C:\Users\braed\OneDrive\Documents\sphere.obj", 'sphere2')
@@ -69,15 +69,15 @@ if __name__ == '__main__':
         pygame.draw.rect(screen, 0, ((0, 0), screenSize))
 
         rend.Render(screen, dt)
-        rend.getScene('Tedst').getObject('Test Cube 2').rotateWorld((1 * dt, 0.0, 0.0))
-        rend.getScene('OBJ').getObject('beveledCube').rotate((1 * dt, 0.0, 0.0))
-        rend.getScene('OBJ').getObject('beveledCube2').rotate((-1 * dt, 0.0, 0.0))
-        rend.getScene('OBJ').getObject('beveledCube3').rotate((0.0, 1 * dt, 0.0))
-        rend.getScene('OBJ').getObject('beveledCube4').rotate((0.0, -1 * dt, 0.0))
-        rend.getScene('OBJ').getObject('sphere').translate(Vec3(0, cos(frame/10) * dt, 0))
-        rend.getScene('OBJ').getObject('sphere').rotate((1 * dt, 2 * dt, -1 * dt))
+        #rend.getScene('Tedst').getObject('Test Cube 2').rotateWorld((1 * dt, 0.0, 0.0))
+        #rend.getScene('OBJ').getObject('beveledCube').rotate((1 * dt, 0.0, 0.0))
+        #rend.getScene('OBJ').getObject('beveledCube2').rotate((-1 * dt, 0.0, 0.0))
+        #rend.getScene('OBJ').getObject('beveledCube3').rotate((0.0, 1 * dt, 0.0))
+        #rend.getScene('OBJ').getObject('beveledCube4').rotate((0.0, -1 * dt, 0.0))
+        #rend.getScene('OBJ').getObject('sphere').translate(Vec3(0, cos(frame/10) * dt, 0))
+        #rend.getScene('OBJ').getObject('sphere').rotate((1 * dt, 2 * dt, -1 * dt))
         rend.getScene('Sphere').getObject('sphere').rotate((1 * dt, 0.0, 0.0))
-        rend.getScene('Teacup').getObject('spoon').rotate((0.0, 0.0, 1 * dt))
+        #rend.getScene('Teacup').getObject('spoon').rotate((0.0, 0.0, 1 * dt))
         #rend.getScene('Sphere').getObject('sphere').faces[int(frame/20)].color = (255,255,255)
         '''if frame >= 0:
             for i in range(len(rend.getCurrentScene().getObject('sphere').faces)):
@@ -99,6 +99,6 @@ if __name__ == '__main__':
 
         pygame.display.set_caption(f'FPS: {round(clock.get_fps(), 2)}, Faces: {len(rend.currScene.allObjects.faces)}, Frame: {frame}')
         pygame.display.update()
-        clock.tick(600)
+        clock.tick(6)
         frame += 1
         #quit()
